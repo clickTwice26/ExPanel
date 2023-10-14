@@ -37,10 +37,27 @@ def log(comment):
 
 
 class ServerHost:
-    def __init__(self, identity) -> None:
-        self.request_data = json.load(identity)
+    def __init__(self, product_code) -> None:
+        self.product_code = product_code
 
-        pass
+        
+    def config_loader(self):
+        configuration = json.load(open(f"{working_dir}/cgi-bin/serverdb/requestdata/{self.product_code}.json", "r").read())
+        self.port = configuration["port"]
+        self.application = configuration["application"]
+        self.product_code = configuration["product_code"]
+        self.product_name = configuration["product_name"]
+        self.server_files = configuration["server_files"]
+    def deploy(self):
+        #importing deply configuration
+        deploy_configuration = json.load(open(f"{working_dir}+/cgi-bin/serverdb/deploy_configuration/{self.application}.json", 'r').read())
+        deploy_directory = f"{working_dir}+/cgi-bin/deployment/{self.application}/{self.product_code}+{self.product_name}/"
+        if not os.path.exists(deploy_directory):
+            os.mkdir(deploy_directory)
+        
+        # os.system(f"mv {}")
+        # os.
+
 
 def security_check(token,timeframe):
     
