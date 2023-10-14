@@ -1,3 +1,6 @@
+def server_create(token):
+    print("")
+    print(f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +9,7 @@
     <title>Server Hosting</title>
 </head>
 <body>
-    <form method="post" action="/cgi-bin/server.py">
+    <form enctype="multipart/form-data" method="post" action="/cgi-bin/server.py">
         <label for="port">Port:</label>
         <input type="text" name="port" id="" placeholder="Enter your port"><br>
         <label for="server_selection">Select Your Server</label>
@@ -18,12 +21,24 @@
         </select>
         <br>
         <label for="files">Upload your server files:</label>
-        <input type="file" name="server_files" id="">
+        <input type="file" name="file" id="">
         <br>
         <label for="">Nickname:</label>
         <input type="text" name="nickname" id="">
         <br>
+          <input type="text" name="token" value="{token}" hidden>
         <input type="submit" value="Create a Server">
     </form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+""")
