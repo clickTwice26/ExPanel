@@ -1,0 +1,8 @@
+{
+    "port": 8989,
+    "files": ".zip",
+    "build_command": "example",
+    "start command": "",
+    "nickname": ""
+
+}
