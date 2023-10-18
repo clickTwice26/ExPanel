@@ -5,6 +5,4 @@ import random
 import func
 
 
-
-
 fd.server_create(func.tokengen("server_create"))
