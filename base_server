@@ -1,4 +1,3 @@
-working_dir = '/home/dark/Desktop/gian'
 import os
 import json
 

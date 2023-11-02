@@ -91,16 +91,26 @@ def deployer_set(session):
     unset_deployer_data =  open("base_deployer", "r").read()
     new_Data = f"working_dir = '{client_data['working_dir']}'\n"
     new_Data = new_Data+unset_deployer_data
+    
+    unset_server_data = open("base_server","r").read()
+    new_Data_Server = f"working_dir = '{client_data['working_dir']}'\n"
+    new_Data_Server = new_Data_Server+unset_server_data
+    
+    
     # print(new_Data)
     try:
         with open("deployer.py", "w") as deployer:
             deployer.write(new_Data)
             deployer.close()
             console_log("deployer file successfully created", session)
+        with open("server.py", "w") as server:
+            server.write(new_Data_Server)
+            server.close()
     except Exception as error:
         console_log("error faced during creating deployer file: {}".format(error), session)
     try:
         shutil.copy(f"{working_dir}/deployer.py", "/bin/")
+        shutil.copy(f"{working_dir}/server.py", "/bin/")
         console_log("Deployer installation successfull", session)
     except Exception as error:
         console_log("Deployer installation to the bin folder unsuccessfull. error is:{}".format(error), session)
@@ -125,8 +135,8 @@ Description=XpanelDeployer
 
 [Service]
 User=root
-WorkingDirectory={working_dir}
-ExecStart=/usr/bin/python3 {working_dir}/server.py
+WorkingDirectory=/bin
+ExecStart=/usr/bin/python3 /bin/server.py
 # optional items below
 Restart=always
 RestartSec=3

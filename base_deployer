@@ -6,7 +6,7 @@ import json
 
 
 from zipfile import ZipFile 
-working_dir = os.getcwd()
+# working_dir = os.getcwd()
 def extract(zip_directory, extract_location):
     with ZipFile(zip_directory, 'r') as zObject: 
           zObject.extractall(path=extract_location) 
