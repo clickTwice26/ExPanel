@@ -1,4 +1,4 @@
-working_dir = /home/dark/Desktop/gian
+working_dir = '/home/dark/Desktop/gian'
 import textwrap
 import time
 import socket
