@@ -6,7 +6,7 @@ import socket
 import pathlib
 import random
 import socket
-
+from zipfile import ZipFile 
 def portcheck(port):
     a_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -22,7 +22,7 @@ def portcheck(port):
         return False
         
 
-from zipfile import ZipFile 
+
 working_dir = os.getcwd()
 def extract(zip_directory, extract_location):
     with ZipFile(zip_directory, 'r') as zObject: 

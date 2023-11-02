@@ -1,0 +1,4 @@
+[!] [02/11/2023 07:45:12] [You selected install option]
+[!] [02/11/2023 07:45:12] [Trying to install deployer.py]
+[!] [02/11/2023 07:45:12] [deployer file successfully created]
+[X] [02/11/2023 07:45:12] [Deployer installation to the bin folder unsuccessfull. error is:[Errno 13] Permission denied: '/bin/deployer.py']
