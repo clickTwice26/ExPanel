@@ -104,7 +104,7 @@ def deployer_set(session):
         console_log("Deployer installation successfull", session)
     except Exception as error:
         console_log("Deployer installation to the bin folder unsuccessfull. error is:{}".format(error), session)
-    service_file = f"""[Unit]
+    deployer_service_file = f"""[Unit]
 Description=XpanelDeployer
 
 [Service]
@@ -120,12 +120,30 @@ WantedBy=multi-user.target
     
     
     """
-    print(service_file)
+    server_service_file = f"""[Unit]
+Description=XpanelDeployer
+
+[Service]
+User=root
+WorkingDirectory={working_dir}
+ExecStart=/usr/bin/python3 {working_dir}/server.py
+# optional items below
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target"""
+    # print(service_file)
     with open("xpanel_deployer.service", "w") as service_writer:
-        service_writer.write(service_file)
+        service_writer.write(deployer_service_file)
         service_writer.close()
+    with open("xpanel_server.service", "w") as server_service_writer:
+        server_service_writer.write(server_service_file)
+        server_service_writer.close()
+        
     try:
         shutil.copy("xpanel_deployer.service", "/etc/systemd/system/")
+        shutil.copy("xpanel_server.service", "/etc/systemd/system/")
     except Exception as error:
         print(error)
 
